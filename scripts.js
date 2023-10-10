@@ -1,4 +1,4 @@
-function getComputerChoice(resultado) {
+function getComputerChoice() {
     const randomNum = Math.floor(Math.random() * 3 + 1);
 
     if (randomNum == 1) {
@@ -12,47 +12,52 @@ function getComputerChoice(resultado) {
     }
     return result;
 }
-  
+ 
+function getUserChoice() {
+  let result = prompt("Escribe tu eleccion");
+
+  return result
+}
+
 function playRound(playerSelection, computerSelection) {
-  // your code here!
   let result = "";
 
   if (playerSelection == "rock") {
     if (computerSelection == "rock") {
-      result = "Tie!";
+      result = "Tie";
     }
     else if (computerSelection == "paper"){
-      result = "Lose!";
+      result = "Lose";
     }
     else {
-      result = "Win!";
+      result = "Win";
     }
   }
   else if (playerSelection == "paper") {
     if (computerSelection == "rock") {
-      result = "Win!";
+      result = "Win";
     }
     else if (computerSelection == "paper"){
-      result = "Tie!";
+      result = "Tie";
     }
     else {
-      result = "Lose!";
+      result = "Lose";
     }
   }
   else if (playerSelection == "scissors") {
     if (computerSelection == "rock") {
-      result = "Lose!";
+      result = "Lose";
     }
     else if (computerSelection == "paper"){
-      result = "Win!";
+      result = "Win";
     }
     else {
-      result = "Tie!";
+      result = "Tie";
     }
   }
   return result;
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+let playerSelection = getUserChoice();
+let computerSelection = getComputerChoice();
+console.log(playRound(playerSelection,computerSelection));
