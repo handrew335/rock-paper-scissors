@@ -1,5 +1,3 @@
-const options = ["rock", "paper", "scissors"];
-
 function getComputerChoice() { //Get a random generated computer choice
     const randomNum = Math.floor(Math.random() * 3);
 
@@ -21,7 +19,7 @@ function getUserChoice() {
       continue;
     }
     const choiceInLower = choice.toLowerCase();
-    if(options.includes(choiceInLower)) {
+    if(choiceInLower == "rock" || choiceInLower == "paper" || choiceInLower == "scissors") {
       validatedInput = true;
       return choiceInLower;
     }
@@ -94,6 +92,7 @@ function game() {
     else if (checkWinner(playerSelection, computerSelection) == "Computer") {
       scoreComputer++;
     }
+    console.log("Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
   }
   if (scorePlayer > scoreComputer) {
     console.log("Game Over. Player Won");
