@@ -1,3 +1,8 @@
+const rockButton = document.querySelector('#rock-btn');
+const paperButton = document.querySelector('#paper-btn');
+const scissorsButton = document.querySelector('#scissors-btn');
+const outcomeDiv = document.querySelector('.outcome')
+
 function getComputerChoice() { //Get a random generated computer choice
     const randomNum = Math.floor(Math.random() * 3);
 
@@ -10,21 +15,79 @@ function getComputerChoice() { //Get a random generated computer choice
         return "scissors";
     }
 }
- 
-function getUserChoice() {
-  let validatedInput = false;
-  while(validatedInput == false) {
-    const choice = prompt("Type your weapon");
-    if(choice == null) {
-      continue;
+
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection == "rock") {
+    if (computerSelection == "rock") {
+      const p = document.createElement('p');
+      p.innerText = "It's a tie you both picked rock";
+      outcomeDiv.appendChild(p);
     }
-    const choiceInLower = choice.toLowerCase();
-    if(choiceInLower == "rock" || choiceInLower == "paper" || choiceInLower == "scissors") {
-      validatedInput = true;
-      return choiceInLower;
+    else if (computerSelection == "paper"){
+      const p = document.createElement('p');
+      p.innerText = "You picked rock, computer picked paper. You Lose";
+      outcomeDiv.appendChild(p);
+    }
+    else {
+      const p = document.createElement('p');
+      p.innerText = "You picked rock, computer picked scissors. You Win";
+      outcomeDiv.appendChild(p);
+    }
+  }
+  else if (playerSelection == "paper") {
+    if (computerSelection == "rock") {
+      const p = document.createElement('p');
+      p.innerText = "You picked paper, computer picked rock. You Win";
+      outcomeDiv.appendChild(p);
+    }
+    else if (computerSelection == "paper"){
+      const p = document.createElement('p');
+      p.innerText = "It's a tie you both picked paper";
+      outcomeDiv.appendChild(p);
+    }
+    else {
+      const p = document.createElement('p');
+      p.innerText = "You picked paper, computer picked scissors. You Lose";
+      outcomeDiv.appendChild(p);
+    }
+  }
+  else if (playerSelection == "scissors") {
+    if (computerSelection == "rock") {
+      const p = document.createElement('p');
+      p.innerText = "You picked scissors, computer picked rock. You Lose";
+      outcomeDiv.appendChild(p);
+    }
+    else if (computerSelection == "paper"){
+      const p = document.createElement('p');
+      p.innerText = "You picked scissors, computer picked paper. You Win";
+      outcomeDiv.appendChild(p);
+    }
+    else {
+      const p = document.createElement('p');
+      p.innerText = "It's a tie you both picked scissors";
+      outcomeDiv.appendChild(p);
     }
   }
 }
+
+rockButton.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const playerSelection = 'rock';
+  playRound(playerSelection, computerSelection);
+});
+
+paperButton.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const playerSelection = 'paper';
+  playRound(playerSelection, computerSelection);
+});
+
+scissorsButton.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const playerSelection = 'scissors';
+  playRound(playerSelection, computerSelection);
+});
+
 
 function checkWinner(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
@@ -38,62 +101,22 @@ function checkWinner(playerSelection, computerSelection) {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
-  let result = "";
-
-  if (playerSelection == "rock") {
-    if (computerSelection == "rock") {
-      result = "It's a Tie";
-    }
-    else if (computerSelection == "paper"){
-      result = "You picked rock, computer picked paper. You Lose";
-    }
-    else {
-      result = "You picked rock, computer picked scissors. You Win";
-    }
-  }
-  else if (playerSelection == "paper") {
-    if (computerSelection == "rock") {
-      result = "You picked paper, computer picked rock. You Win";
-    }
-    else if (computerSelection == "paper"){
-      result = "It's a Tie";
-    }
-    else {
-      result = "You picked paper, computer picked scissors. You Lose";
-    }
-  }
-  else if (playerSelection == "scissors") {
-    if (computerSelection == "rock") {
-      result = "You picked scissors, computer picked rock. You Lose";
-    }
-    else if (computerSelection == "paper"){
-      result = "You picked scissors, computer picked paper. You Win";
-    }
-    else {
-      result = "It's a Tie";
-    }
-  }
-  return result;
-}
-
-function game() {
+/* function game() {
   let scorePlayer = 0;
   let scoreComputer = 0;
 
   console.log("Welcome");
-  for (let i = 0; i < 5; i ++) {
-    const playerSelection = getUserChoice();
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-    if (checkWinner(playerSelection, computerSelection) == "Player") {
-      scorePlayer++;
-    }
-    else if (checkWinner(playerSelection, computerSelection) == "Computer") {
-      scoreComputer++;
-    }
-    console.log("Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
+  const playerSelection = getUserChoice();
+  const computerSelection = getComputerChoice();
+  console.log(playRound(playerSelection, computerSelection));
+  if (checkWinner(playerSelection, computerSelection) == "Player") {
+    scorePlayer++;
   }
+  else if (checkWinner(playerSelection, computerSelection) == "Computer") {
+    scoreComputer++;
+  }
+  console.log("Player Score: " + scorePlayer + " Computer Score: " + scoreComputer);
+  
   if (scorePlayer > scoreComputer) {
     console.log("Game Over. Player Won");
   }
@@ -105,4 +128,4 @@ function game() {
   }
 }
 
-console.log(game());
+console.log(game()); */
